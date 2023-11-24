@@ -1,0 +1,63 @@
+﻿
+title: Start
+---
+<<declare $num = 0>>
+<<declare $gameStart = false>>
+<<declare $chosenNum = 0>>
+
+Az: Hey!
+
+Az: You look lost, are you new here?
+	-> Yes
+		<<jump Introduction>>
+	-> No
+		Az: Well do you want to play a game? 
+		-> Yes
+			<<jump Game>>
+		-> No
+			<<jump End>>
+===
+
+title: Introduction
+---
+Az: Welcome! I'm Az, I'll be your narrator for your time here
+Az: I'm from Auxilium Hominum Artifex, do you know them?
+	-> What's Auxilium Hominum Artifex?
+		<<jump AHAIntro>> 
+	-> I might have heard of them
+		Az: That's cool! Let me explain who we are a bit more 
+		<<jump AHAIntro>>
+	-> I know Auxilium Hominum Artifex
+		Az: That's cool! Then how about we play a game?
+			-> Sure
+				<<jump Game>>
+			-> I'm good
+				<<jump End>>
+===
+
+title: AHAIntro
+---
+Az: The creators didn't get this far yet
+Az: I'll explain who we are later
+Az: So for now...
+Az: How about we play a game? 
+	-> Sure
+		<<jump Game>>
+	-> I'm good
+		<<jump End>>
+===
+
+title: Game
+---
+<<set $gameStart to true>>
+Az: So the game rules are easy
+Az: I pick a random number between 1 and 10, and you guess it!
+	-> Okay
+		Az: The number is {$num}!
+		<<jump End>>
+===
+
+title: End
+---
+Az: Alright then, have a nice day! 
+===
