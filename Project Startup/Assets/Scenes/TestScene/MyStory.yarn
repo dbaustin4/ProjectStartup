@@ -3,7 +3,9 @@ title: Start
 ---
 <<declare $num = 0>>
 <<declare $gameStart = false>>
+<<declare $canGuess = false>>
 <<declare $chosenNum = 0>>
+<<declare $guessedRight = false>>
 
 Az: Hey!
 
@@ -49,12 +51,27 @@ Az: How about we play a game?
 
 title: Game
 ---
+
 <<set $gameStart to true>>
-Az: So the game rules are easy
+
 Az: I pick a random number between 1 and 10, and you guess it!
-	-> Okay
-		Az: The number is {$num}!
+
+<<if $gameStart is true>>
+	<<set $gameStart to false>>
+<<endif>>
+
+Az: Guess the number!
+
+<<set $canGuess to true>>
+
+Az: Now guess, if you got it right the numbers will disappear
+Az: You did it!
+Az: Do you want to play again?
+	-> Yes
+		<<jump Game>>
+	-> No
 		<<jump End>>
+
 ===
 
 title: End
