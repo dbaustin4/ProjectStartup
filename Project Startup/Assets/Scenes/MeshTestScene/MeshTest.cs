@@ -34,7 +34,7 @@ public class MeshTest : MonoBehaviour {
     mesh.vertices = vertices;
     mesh.uv = uv;
     mesh.triangles = triangles;
-    
+
     GetComponent<MeshFilter>().mesh = mesh;
 
   }
@@ -44,3 +44,5 @@ public class MeshTest : MonoBehaviour {
 
   }
 }
+
+

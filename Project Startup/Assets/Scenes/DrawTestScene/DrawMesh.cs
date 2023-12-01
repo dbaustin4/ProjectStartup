@@ -21,39 +21,39 @@ public class DrawMesh : MonoBehaviour {
 
   private void Update() {
     if (Input.GetMouseButtonDown(0)) { //if mouse is pressed once
-     
+
       mesh = new Mesh(); //initialize new mesh
 
       //create arrays for each mesh component
-      Vector3[] vertices = new Vector3[4]; 
-      Vector2[] uv = new Vector2[4]; 
+      Vector3[] vertices = new Vector3[4];
+      Vector2[] uv = new Vector2[4];
       int[] triangles = new int[6];
 
       //set first vertext pos
-      vertices[0] = GetMouseWorldPos(); 
+      vertices[0] = GetMouseWorldPos();
       vertices[1] = GetMouseWorldPos();
       vertices[2] = GetMouseWorldPos();
       vertices[3] = GetMouseWorldPos();
 
       //set uv values
-      uv[0] = Vector2.zero; 
+      uv[0] = Vector2.zero;
       uv[1] = Vector2.zero;
       uv[2] = Vector2.zero;
       uv[3] = Vector2.zero;
 
       //set first triangle values (for a quad)
-      triangles[0] = 0; 
+      triangles[0] = 0;
       triangles[1] = 3;
       triangles[2] = 1;
 
       //set second triangle values (for a quad)
-      triangles[3] = 1; 
+      triangles[3] = 1;
       triangles[4] = 3;
       triangles[5] = 2;
 
       //assign each value to their mesh component
-      mesh.vertices = vertices; 
-      mesh.uv = uv; 
+      mesh.vertices = vertices;
+      mesh.uv = uv;
       mesh.triangles = triangles;
       mesh.MarkDynamic(); //say the shape we're making is dynamic
 
@@ -66,7 +66,7 @@ public class DrawMesh : MonoBehaviour {
 
       if (Vector3.Distance(GetMouseWorldPos(), lastMousePos) > minDistance) { //allow draw when mouse is further than minimum distance
         //expand mesh to add the new vertices
-        Vector3[] vertices = new Vector3[mesh.vertices.Length + 2]; 
+        Vector3[] vertices = new Vector3[mesh.vertices.Length + 2];
         Vector2[] uv = new Vector2[mesh.uv.Length + 2];
         int[] triangles = new int[mesh.triangles.Length + 6];
 
