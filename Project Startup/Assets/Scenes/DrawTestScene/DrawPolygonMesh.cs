@@ -13,24 +13,37 @@ public class DrawPolygonMesh : MonoBehaviour {
   [SerializeField] private int polygonSides; //how many sides is the polygon (more = rounder)
   [SerializeField] private float polygonRadius; //how big is the polygon
 
+  //Vector3 polygonPosition;
+
   private void Start() {
     mesh = new Mesh(); //create new instance of mesh
-    this.GetComponent<MeshFilter>().mesh = mesh; //assign mesh to Meshfilter of this game obj
+    GetComponent<MeshFilter>().mesh = mesh; //assign mesh to Meshfilter of this game obj
+    //GetComponent<Transform>().position = polygonPosition;
   }
 
   private void Update() {
-    if (Input.GetMouseButton(0)) {
-      DrawPolygon(polygonSides, polygonRadius); //puts the polygon on the screen
-    }
+    /*Vector3 mousePosition = Input.mousePosition;
+    mousePosition.z = 0;
+
+    // Update the position of the object
+    transform.position = mousePosition;*/
+
+    //if (Input.GetMouseButton(0)) {
+    DrawPolygon(polygonSides, polygonRadius/*, mousePosition*/); //puts the polygon on the screen
+    //}
+
+
   }
 
   //draws a polygon
-  private void DrawPolygon(int sides, float radius) {
+  private void DrawPolygon(int sides, float radius/*, Vector3 pPosition*/) {
     polygonPoints = GetCircumferencePoints(sides, radius).ToArray(); //calculate points on the outside of the shape and put them in an array
     polygonTriangles = DrawTriangles(polygonPoints); //figure out how to connect the points to fill the shape
     mesh.Clear(); //clear any previous drawings on the screen
     mesh.vertices = polygonPoints; //draw the shape using the calculated points
     mesh.triangles = polygonTriangles; //connect the points to create the shape
+    /*transform.position = polygonPosition;
+    Debug.Log("polygon pos " + polygonPosition);*/
   }
 
   //calculate evenly spaced points on polygon circumference based on amount of sides and radius 
