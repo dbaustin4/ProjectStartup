@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DrawMesh : MonoBehaviour {
 
+  [SerializeField]
+  private List<Mesh> meshes;
   private Mesh mesh; //create new mesh
   private Vector3 lastMousePos;
 
@@ -16,13 +18,14 @@ public class DrawMesh : MonoBehaviour {
   [SerializeField] private Transform debugVisual2;
 
   private void Start() {
-
+    meshes = new List<Mesh>();
   }
 
   private void Update() {
     if (Input.GetMouseButtonDown(0)) { //if mouse is pressed once
 
       mesh = new Mesh(); //initialize new mesh
+      meshes.Add(mesh);
 
       //create arrays for each mesh component
       Vector3[] vertices = new Vector3[4];
