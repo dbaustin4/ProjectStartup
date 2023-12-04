@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9222282289288279487}
-  - component: {fileID: 9222282289288279480}
   - component: {fileID: 9222282289288279481}
   m_Layer: 0
   m_Name: Upload
@@ -33,19 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9222282289288279480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9222282289288279482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 967662ba842efcc44941b0236da239aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imagePrefab: {fileID: 9222282289288279482}
 --- !u!212 &9222282289288279481
 SpriteRenderer:
   m_ObjectHideFlags: 0
