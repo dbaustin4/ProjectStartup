@@ -8,6 +8,7 @@ public class DrawMesh : MonoBehaviour {
   private List<Mesh> meshes;
   private Mesh mesh; //create new mesh
   private Vector3 lastMousePos;
+  private bool canDraw = false; 
 
   //adjustable variables
   [SerializeField] private float lineThickness = 1f;
@@ -18,10 +19,14 @@ public class DrawMesh : MonoBehaviour {
   [SerializeField] private Transform debugVisual2;
 
   private void Start() {
-    meshes = new List<Mesh>();
+    meshes = new List<Mesh>(); //create our own new mesh
   }
 
   private void Update() {
+    if (canDraw) MeshCreation(); //draw if we're allowed to
+  }
+
+  private void MeshCreation() {
     if (Input.GetMouseButtonDown(0)) { //if mouse is pressed once
 
       mesh = new Mesh(); //initialize new mesh
@@ -124,8 +129,6 @@ public class DrawMesh : MonoBehaviour {
         lastMousePos = GetMouseWorldPos(); //get current mouse pos
       }
     }
-
-    //transform.position = GetMouseWorldPos(); //have newly created quad follow current mouse pos
   }
 
   private static Vector3 GetMouseWorldPos() { //gets mouse pos in world space (without z for 2d)
@@ -137,5 +140,10 @@ public class DrawMesh : MonoBehaviour {
   private static Vector3 GetMouseWorldPosWithZ(Vector3 screenPosition, Camera worldCamera) { //gets mouse pos in world space (z included)
     Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
     return worldPosition;
+  }
+
+  public void CanDrawCheck() {  //check if we can draw
+    if(!canDraw) canDraw = true; //if bool is false set to true
+    else canDraw = false; //else (if its true) set to false 
   }
 }

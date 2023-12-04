@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Transform : MonoBehaviour {
+public class TransformPosition : MonoBehaviour {
   private bool isDragging = false;
   private Vector2 offset;
 
