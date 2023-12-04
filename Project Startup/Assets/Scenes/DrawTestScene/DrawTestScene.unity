@@ -603,6 +603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 804545087}
+  - component: {fileID: 804545088}
   m_Layer: 0
   m_Name: ColorManager
   m_TagString: Untagged
@@ -618,13 +619,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804545086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 266.03867, y: 142.48402, z: -5.4189186}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &804545088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804545086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8210b9ec7747f1a4d8188cec9fce52d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorWheel: {fileID: 1539468170}
 --- !u!1 &988555662
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,8 +955,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1539468174}
-        m_TargetAssemblyTypeName: ColorPicker, Assembly-CSharp
+      - m_Target: {fileID: 804545088}
+        m_TargetAssemblyTypeName: ColorManager, Assembly-CSharp
         m_MethodName: ShowPicker
         m_Mode: 1
         m_Arguments:
@@ -1057,7 +1071,7 @@ PrefabInstance:
     - target: {fileID: 7965290884843957827, guid: fc7c1fbd61e6b5d41a9062deb6fb9e87, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3cd831bd4bda1dc44a8769d78204e2d9, type: 2}
+      objectReference: {fileID: 2100000, guid: 49507dc5c7e32674d850eea7b2625fd2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc7c1fbd61e6b5d41a9062deb6fb9e87, type: 3}
 --- !u!1 &1463094750
@@ -1422,7 +1436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1539468171
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1493,8 +1507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c40d7032d886b439332a69e5058262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  output: {r: 0, g: 0, b: 0, a: 0}
-  ColorWheel: {fileID: 1539468170}
+  targetMaterial: {fileID: 2100000, guid: 49507dc5c7e32674d850eea7b2625fd2, type: 2}
 --- !u!1 &1649098894
 GameObject:
   m_ObjectHideFlags: 0
