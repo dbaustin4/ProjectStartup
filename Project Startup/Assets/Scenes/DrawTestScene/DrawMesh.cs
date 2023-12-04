@@ -89,8 +89,8 @@ public class DrawMesh : MonoBehaviour {
         Vector3 newVertexDown = GetMouseWorldPos() + Vector3.Cross(mouseForwardVector, normal2D * -1f) * lineThickness;
 
         //for debug check new vertice vectors 
-        debugVisual1.position = newVertexUp;
-        debugVisual2.position = newVertexDown;
+        /*debugVisual1.position = newVertexUp;
+        debugVisual2.position = newVertexDown;*/
 
         //set new vertex values
         vertices[vIndex2] = newVertexUp;
