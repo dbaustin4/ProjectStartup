@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9222282289288279487}
   - component: {fileID: 9222282289288279481}
+  - component: {fileID: 1808357299151405150}
   m_Layer: 0
   m_Name: Upload
   m_TagString: Image
@@ -84,3 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1808357299151405150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9222282289288279482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38492d543d4c6740ac47878ae895a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

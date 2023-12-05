@@ -8,6 +8,7 @@ using System.Collections;
 public class UploadImage : MonoBehaviour {
   [SerializeField] private GameObject imagePrefab; //prefab with SpriteRenderer component
   Coroutine CoroutineCheck;
+  [SerializeField] private GameObject uploadContainer;
 
   private void Start() {
   
@@ -40,10 +41,12 @@ public class UploadImage : MonoBehaviour {
     CoroutineCheck = StartCoroutine(ShowLoadDialogCoroutine()); //reset coroutine
   }
   
-  private void LoadOneImage(string imagePath) {
+  private void LoadOneImage(string imagePath, GameObject parent) {
     GameObject imageObject = Instantiate(imagePrefab); //instantiate image obj 
     imageObject.tag = "Image"; //set the obj tag for removing
 
+    imageObject.transform.parent = parent.transform; //have the upload container obj be the parent of uploaded img
+    imageObject.layer = LayerMask.NameToLayer("Upload");
     SpriteRenderer spriteRenderer = imageObject.GetComponent<SpriteRenderer>(); //get sprite renderer component from image obj
 
     byte[] imageData = System.IO.File.ReadAllBytes(imagePath); //read image file and store as bytes
@@ -52,7 +55,6 @@ public class UploadImage : MonoBehaviour {
     Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero); //create sprite from texture and set pivot point to center
     spriteRenderer.sprite = sprite; //assign sprite to sprite renderer so it shows
 
-    imageObject.AddComponent<TransformPosition>(); //add a transform script
     imageObject.AddComponent<BoxCollider2D>(); //add a 2d box collider so we can transform the img
   }
 
@@ -64,7 +66,7 @@ public class UploadImage : MonoBehaviour {
       for (int i = 0; i < FileBrowser.Result.Length; i++) { //loop through all file paths
         string fileToBeLoaded = FileBrowser.Result[i]; //sets the path to a string so it can be loaded
         //Debug.Log($"{fileToBeLoaded} - {i}"); //print file path
-        LoadOneImage(fileToBeLoaded); //load path
+        LoadOneImage(fileToBeLoaded, uploadContainer); //load path
       }
     }
   }
@@ -76,4 +78,4 @@ public class UploadImage : MonoBehaviour {
 // Save file/folder: file, Allow multiple selection: false
 // Initial path: "C:\", Initial filename: "Screenshot.png"
 // Title: "Save As", Submit button text: "Save"
-// FileBrowser.ShowSaveDialog( null, null, FileBrowser.PickMode.Files, false, "C:\\", "Screenshot.png", "Save As", "Save" );
+// FileBrowser .ShowSaveDialog( null, null, FileBrowser.PickMode.Files, false, "C:\\", "Screenshot.png", "Save As", "Save" );

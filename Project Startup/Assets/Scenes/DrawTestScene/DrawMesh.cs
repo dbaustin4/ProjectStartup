@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class DrawMesh : MonoBehaviour {
 
-  [SerializeField]
   private List<Mesh> meshes;
   private Mesh mesh; //create new mesh
   private Vector3 lastMousePos;
-  private bool canDraw = false; 
 
   //adjustable variables
   [SerializeField] private float lineThickness = 1f;
@@ -18,12 +16,14 @@ public class DrawMesh : MonoBehaviour {
   [SerializeField] private Transform debugVisual1;
   [SerializeField] private Transform debugVisual2;
 
+  [SerializeField] private GameManager gameManager;
+
   private void Start() {
     meshes = new List<Mesh>(); //create our own new mesh
   }
 
   private void Update() {
-    if (canDraw) MeshCreation(); //draw if we're allowed to
+    if (gameManager.canDraw) MeshCreation(); //draw if we're allowed to
   }
 
   private void MeshCreation() {
@@ -140,10 +140,5 @@ public class DrawMesh : MonoBehaviour {
   private static Vector3 GetMouseWorldPosWithZ(Vector3 screenPosition, Camera worldCamera) { //gets mouse pos in world space (z included)
     Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
     return worldPosition;
-  }
-
-  public void CanDrawCheck() {  //check if we can draw
-    if(!canDraw) canDraw = true; //if bool is false set to true
-    else canDraw = false; //else (if its true) set to false 
   }
 }
