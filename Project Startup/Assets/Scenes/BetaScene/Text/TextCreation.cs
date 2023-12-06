@@ -9,7 +9,6 @@ public class TextCreation : MonoBehaviour {
   public Transform textSpawnPoint;
 
   private void Start() {
-    // Subscribe to the OnEndEdit event
     yourInputField.onEndEdit.AddListener(OnEndEditCallback);
   }
 
@@ -17,7 +16,6 @@ public class TextCreation : MonoBehaviour {
     // Handle the edited text
     Debug.Log("Edited Text: " + editedText);
 
-    // Optionally, you can call another method or perform actions based on the edited text
     CreateTextObject(editedText);
 
     // Clear the TMP InputField after adding the text (if desired)
@@ -34,9 +32,6 @@ public class TextCreation : MonoBehaviour {
     // Set the text content
     textComponent.text = text;
 
-    // Optional: You may want to modify the appearance or behavior of the text here
-
-    // Optional: You may want to organize the new text objects in a specific way
     newTextObject.transform.SetParent(textSpawnPoint);
   }
 }

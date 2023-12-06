@@ -34,7 +34,7 @@ public class ColorPicker : MonoBehaviour, IPointerClickHandler {
     return t.GetPixel(m_point.x, m_point.y);
   }
 
-  void SetMaterialColor(Color color) {
+  public void SetMaterialColor(Color color) {
     // Check if the material has the "_Color" property
     if (targetMaterial.HasProperty("_Color")) {
       // Set the color of the material

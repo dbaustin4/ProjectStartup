@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
   public bool canDraw = false;
 
-  [SerializeField] private GameObject transformPosition;
+  [SerializeField] private GameObject transformUploadPosition;
   private TransformPosition transformPositionScript;
 
   [SerializeField] GameObject colorWheel;
@@ -16,9 +16,8 @@ public class GameManager : MonoBehaviour {
 
   // Start is called before the first frame update
   void Start() {
-    transformPositionScript = transformPosition.GetComponent<TransformPosition>();
+    transformPositionScript = transformUploadPosition.GetComponent<TransformPosition>();
     transformPositionScript.enabled = true;
-
   }
 
   // Update is called once per frame

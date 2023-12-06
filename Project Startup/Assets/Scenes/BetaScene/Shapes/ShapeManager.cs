@@ -7,6 +7,7 @@ public class ShapeManager : MonoBehaviour {
   [SerializeField] private GameObject shapePrefab; // the prefab for creating objects
   [SerializeField] private GameObject shapesContainer; //parent obj 
   [SerializeField] private GameObject background; //set background img
+  [SerializeField] private GameObject AddedShapeContainer;
   private bool clicked = false;
 
   private void Start() {
@@ -14,7 +15,7 @@ public class ShapeManager : MonoBehaviour {
   }
 
   private void Update() {
-    CheckClick();
+
   }
 
   private void CreateShapes() { //create the possible shapes
@@ -26,6 +27,7 @@ public class ShapeManager : MonoBehaviour {
       Image imageComponent = newObject.GetComponent<Image>(); //set sprite from img component on new obj
       if (imageComponent != null) {
         imageComponent.sprite = shapes[i]; //add correct sprite to img component
+        newObject.name = shapes[i].name;
       }
 
       Vector3 position = newObject.transform.localPosition; //store obj position
@@ -36,15 +38,9 @@ public class ShapeManager : MonoBehaviour {
       RectTransform rectTransform = imageComponent.rectTransform; //get rect transform from obj
       rectTransform.localScale = new Vector3(1.0f / 4, 1.0f / 4, 1.0f); //scale img down 4 times as small
 
-      //newObject.AddComponent<BoxCollider2D>(); //add a 2d box collider so we can click
-
-      newObject.tag = "Shape";
-      BoxCollider2D boxCollider = newObject.AddComponent<BoxCollider2D>();
-      boxCollider.isTrigger = true; // Set collider as trigger to receive OnMouseDown events.
-
-      // Set the collider size based on the size of the image
-      RectTransform imageRectTransform = imageComponent.rectTransform;
-      boxCollider.size = new Vector2(imageRectTransform.sizeDelta.x, imageRectTransform.sizeDelta.y);
+      Button buttonComponent = newObject.AddComponent<Button>(); //add button
+      // Add onClick event                                  
+      buttonComponent.onClick.AddListener(() => AddShape(newObject));
 
       newObject.SetActive(false); //set obj to false
     }
@@ -52,7 +48,7 @@ public class ShapeManager : MonoBehaviour {
 
   public void DisplayShapes() { //shows the shape options
     if (!clicked) {
-      clicked = true; 
+      clicked = true;
       background.SetActive(true); //turn on background img
 
       foreach (Transform child in shapesContainer.transform) { //go through children of shapesContainer
@@ -69,28 +65,33 @@ public class ShapeManager : MonoBehaviour {
     }
   }
 
-  private void AddShape() {
+  private void AddShape(GameObject clickedObject) {
+    //Get the Image component from the clicked button
+    Image clickedImage = clickedObject.GetComponent<Image>();
 
-  }
+    // Check if the Image component exists
+    if (clickedImage != null) {
+      // Get the sprite from the clicked Image
+      Sprite clickedSprite = clickedImage.sprite;
 
-  private void CheckClick() {
-    if (Input.GetMouseButtonDown(0)) {
-      int layerMask = LayerMask.GetMask("Shape");
-      RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layerMask);
+      // Instantiate a new GameObject using the shapePrefab
+      GameObject newShape = Instantiate(shapePrefab, Vector3.zero, Quaternion.identity);
 
-      if (hit.collider != null) {
-        Debug.Log("Hit object: " + hit.collider.gameObject.name);
-
-        if (hit.collider.CompareTag("Shape")) {
-          Debug.Log("Shape clicked: " + hit.collider.gameObject.name);
-          // Add your logic for handling the clicked shape here
-        }
+      // Set the sprite of the new GameObject
+      Image newImageComponent = newShape.GetComponent<Image>();
+      if (newImageComponent != null) {
+        newImageComponent.sprite = clickedSprite;
       }
-    }
-    else {
-      //Debug.Log("No hit detected.");
+
+      newShape.transform.SetParent(AddedShapeContainer.transform);
+
+      // Set the position of the new GameObject
+      newShape.transform.position = new Vector3(Screen.width / 2, Screen.height /2, 0);
+
+      newShape.AddComponent<BoxCollider2D>();
+
+      // Activate the new GameObject
+      newShape.SetActive(true);
     }
   }
-
-
 }

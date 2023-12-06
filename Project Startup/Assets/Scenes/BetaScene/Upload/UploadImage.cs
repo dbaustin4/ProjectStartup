@@ -58,6 +58,10 @@ public class UploadImage : MonoBehaviour {
     spriteRenderer.sprite = sprite; //assign sprite to sprite renderer so it shows
 
     imageObject.AddComponent<BoxCollider2D>(); //add a 2d box collider so we can transform the img
+
+    // Extract the file name from the path and set it as the name of the GameObject
+    string fileName = Path.GetFileNameWithoutExtension(imagePath);
+    imageObject.name = fileName;
   }
 
   private IEnumerator ShowLoadDialogCoroutine() {
