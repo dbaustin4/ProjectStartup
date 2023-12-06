@@ -12,10 +12,13 @@ public class GameManager : MonoBehaviour {
   [SerializeField] GameObject colorWheel;
   private bool canPick = false;
 
+  [SerializeField] GameObject textInput;
+
   // Start is called before the first frame update
   void Start() {
     transformPositionScript = transformPosition.GetComponent<TransformPosition>();
     transformPositionScript.enabled = true;
+
   }
 
   // Update is called once per frame
@@ -28,11 +31,13 @@ public class GameManager : MonoBehaviour {
       canDraw = true; //if bool is false set to true
       transformPositionScript.enabled = false;
       Debug.Log("disabled the script");
+
     }
     else {
       canDraw = false; //else (if its true) set to false 
       transformPositionScript.enabled = true;
       Debug.Log("enabled the script");
+
     }
   }
 
@@ -40,4 +45,9 @@ public class GameManager : MonoBehaviour {
     if (!canPick) canPick = true;
     else canPick = false;
   }
+
+  public void ShowTextInput() {
+    textInput.SetActive(true);
+  }
 }
+

@@ -16,10 +16,10 @@ public class UploadImage : MonoBehaviour {
 
   bool openDialog = false;
   private void Update() {
-    if (Input.GetKeyUp(KeyCode.B) && !openDialog) { //open when B is pressed and its not open
+   /* if (Input.GetKeyUp(KeyCode.B) && !openDialog) { //open when B is pressed and its not open
       StopAllCoroutines(); //stop all the coroutines from running
       openDialog = true; //say we are allowed to open the dialog
-    }
+    }*/
   }
 
   private void LateUpdate() {
@@ -47,11 +47,13 @@ public class UploadImage : MonoBehaviour {
 
     imageObject.transform.parent = parent.transform; //have the upload container obj be the parent of uploaded img
     imageObject.layer = LayerMask.NameToLayer("Upload");
+
     SpriteRenderer spriteRenderer = imageObject.GetComponent<SpriteRenderer>(); //get sprite renderer component from image obj
 
     byte[] imageData = System.IO.File.ReadAllBytes(imagePath); //read image file and store as bytes
     Texture2D texture = new Texture2D(2, 2); //create new texture
-    texture.LoadImage(imageData); //put image data into created texture
+    texture.LoadImage(imageData, true); //put image data into created texture
+    
     Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero); //create sprite from texture and set pivot point to center
     spriteRenderer.sprite = sprite; //assign sprite to sprite renderer so it shows
 

@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class ColorPicker : MonoBehaviour, IPointerClickHandler {
 
   public Material targetMaterial; // Reference to the material you want to change
+  private Color pickedColor; // Store the picked color
 
   void Start() {
     // Ensure that a material is assigned to the script
@@ -20,7 +21,7 @@ public class ColorPicker : MonoBehaviour, IPointerClickHandler {
   }
 
   public void OnPointerClick(PointerEventData eventData) {
-    Color pickedColor = Pick(Camera.main.WorldToScreenPoint(eventData.position), GetComponent<Image>());
+    pickedColor = Pick(Camera.main.WorldToScreenPoint(eventData.position), GetComponent<Image>());
     SetMaterialColor(pickedColor);
   }
 
@@ -42,5 +43,10 @@ public class ColorPicker : MonoBehaviour, IPointerClickHandler {
     else {
       Debug.LogError("Material does not have a '_Color' property.");
     }
+  }
+
+  // Expose the picked color through a public method
+  public Color GetPickedColor() {
+    return pickedColor;
   }
 }
