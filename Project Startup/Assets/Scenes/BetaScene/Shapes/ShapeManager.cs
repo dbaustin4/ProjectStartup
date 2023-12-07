@@ -10,9 +10,11 @@ public class ShapeManager : MonoBehaviour {
   [SerializeField] private GameObject background;
   [SerializeField] private GameObject AddedShapeContainer;
   [SerializeField] private float resizeImageDivision = 4f;
+  [SerializeField] private float scaleShapeSize = 1.2f;
 
   private List<RectTransform> addedShapeRectTransforms = new List<RectTransform>(); // List to track added shapes
   private bool isDraggingShape;
+  private bool shapeClicked = false;
 
   private void Start() {
     CreateShapes();
@@ -83,16 +85,22 @@ public class ShapeManager : MonoBehaviour {
   }
 
   public void DisplayShapes() {
-    if (!background.activeSelf) {
+    if (!background.activeSelf /*&& !shapeClicked*/) {
       background.SetActive(true);
 
       foreach (Transform child in shapesContainer.transform) {
         child.gameObject.SetActive(true);
       }
     }
+    /*else if (shapeClicked) {
+      foreach (Transform child in shapesContainer.transform) {
+        child.gameObject.SetActive(false);
+      }
+      shapeClicked = false;
+    }*/
     else {
       background.SetActive(false);
-
+      shapeClicked = false;
       foreach (Transform child in shapesContainer.transform) {
         child.gameObject.SetActive(false);
       }
@@ -110,13 +118,15 @@ public class ShapeManager : MonoBehaviour {
       Image newImageComponent = newShape.GetComponent<Image>();
       if (newImageComponent != null) {
         newImageComponent.sprite = clickedSprite;
+        //shapeClicked = true;
       }
 
       newShape.transform.SetParent(AddedShapeContainer.transform);
 
       RectTransform rectTransform = newShape.GetComponent<RectTransform>();
       rectTransform.pivot = new Vector2(0.5f, 0.5f);
-      rectTransform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0.0f);
+      rectTransform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0.0f); //position in middle
+      rectTransform.localScale = new Vector3(scaleShapeSize, scaleShapeSize, 1.0f); //scale shape size
 
       newShape.AddComponent<BoxCollider2D>();
 

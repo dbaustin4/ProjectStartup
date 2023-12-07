@@ -5,7 +5,7 @@ public class TextCreation : MonoBehaviour {
 
   [SerializeField] Text textPrefab; // Reference to your Text prefab
   [SerializeField] Transform textParent; // Parent transform for the instantiated Text objects
-
+  public bool textCreated = false;
 
   private void Start() {
     
@@ -16,17 +16,16 @@ public class TextCreation : MonoBehaviour {
   }
 
   public void ReadStringInput(string givenText) {
-    Debug.Log("text input is: " + givenText);
-    AddTextToPlaceholder(givenText);
+    //Debug.Log("text input is: " + givenText); //print text that is given
+    AddTextToPlaceholder(givenText); //call method
   }
 
-  private void AddTextToPlaceholder(string inputText) {
-    // Instantiate a new Text GameObject from the prefab
-    Text newText = Instantiate(textPrefab, textParent);
+  private void AddTextToPlaceholder(string inputText) { //method to put text in placeholder
+    Text newText = Instantiate(textPrefab, textParent); //instantiate new obj from prefab
 
-    // Set the text value of the instantiated Text
-    newText.text = inputText;
-
-    newText.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0.0f);
+    newText.text = inputText; //set text value to placeholder from input field to variable
+    textCreated = true;
+    //Debug.Log("text created should be true... its: " + textCreated);
+    newText.transform.position = new Vector3(Screen.width / 2, Screen.height / 2, 0.0f); //position new text obj
   }
 }

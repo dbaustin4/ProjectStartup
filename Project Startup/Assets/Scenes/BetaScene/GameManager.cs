@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
   private bool canPick = false;
 
   [SerializeField] GameObject textInput;
+  [SerializeField] TextCreation textCreation;
+  private bool canType = false;
 
   // Start is called before the first frame update
   void Start() {
@@ -26,6 +28,8 @@ public class GameManager : MonoBehaviour {
   // Update is called once per frame
   void Update() {
     ColorWheelCheck();
+    TextInputCheck();
+    KillProgram();
   }
 
   public void OpenDrawMenu() {
@@ -86,9 +90,27 @@ public class GameManager : MonoBehaviour {
   }
 
   public void ShowTextInput() {
-    textInput.SetActive(true);
+    if (!textCreation.textCreated && !canType) {
+      textInput.SetActive(true);
+      canType = true;
+      Debug.Log("show textInput");
+    }
+    else {
+      textInput.SetActive(false);
+      canType = false;
+    }
   }
 
-  
+  private void TextInputCheck() {
+    if (textCreation.textCreated) {
+      textInput.SetActive(false);
+      textCreation.textCreated = false;
+      Debug.Log("hide textInput");
+    }
+  }
+
+  private void KillProgram() {
+    if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+  }
 }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8949879569797420909}
   - component: {fileID: 8524636787697386814}
+  - component: {fileID: -7056532361412192533}
   - component: {fileID: 8026799043833655245}
   m_Layer: 5
   m_Name: TextPlaceholder (Legacy)
@@ -46,6 +47,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542458321676787937}
   m_CullTransparentMesh: 1
+--- !u!114 &-7056532361412192533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542458321676787937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dba1117791032b4faf216f5eabd589a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8026799043833655245
 MonoBehaviour:
   m_ObjectHideFlags: 0
