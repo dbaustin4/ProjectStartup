@@ -8,6 +8,7 @@ public class ColorPicker : MonoBehaviour, IPointerClickHandler {
 
   public Material targetMaterial; // Reference to the material you want to change
   private Color pickedColor; // Store the picked color
+  public bool colorPicked = false;
 
   void Start() {
     // Ensure that a material is assigned to the script
@@ -39,6 +40,7 @@ public class ColorPicker : MonoBehaviour, IPointerClickHandler {
     if (targetMaterial.HasProperty("_Color")) {
       // Set the color of the material
       targetMaterial.SetColor("_Color", color);
+      colorPicked = true;
     }
     else {
       Debug.LogError("Material does not have a '_Color' property.");
@@ -49,4 +51,5 @@ public class ColorPicker : MonoBehaviour, IPointerClickHandler {
   public Color GetPickedColor() {
     return pickedColor;
   }
+
 }

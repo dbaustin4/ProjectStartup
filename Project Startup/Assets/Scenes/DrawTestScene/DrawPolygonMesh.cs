@@ -22,11 +22,11 @@ public class DrawPolygonMesh : MonoBehaviour {
   }
 
   private void Update() {
-    /*Vector3 mousePosition = Input.mousePosition;
+    Vector3 mousePosition = Input.mousePosition;
     mousePosition.z = 0;
 
     // Update the position of the object
-    transform.position = mousePosition;*/
+    transform.position = mousePosition;
 
     //if (Input.GetMouseButton(0)) {
     DrawPolygon(polygonSides, polygonRadius/*, mousePosition*/); //puts the polygon on the screen

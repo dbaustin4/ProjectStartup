@@ -11,6 +11,7 @@ public class ChangeColorDisplayImage : MonoBehaviour
   void Start() {
     ChangeColor();
     colorPicker.SetMaterialColor(Color.black); //set to black at start
+    colorPicker.colorPicked = false;
   }
 
   private void Update() {

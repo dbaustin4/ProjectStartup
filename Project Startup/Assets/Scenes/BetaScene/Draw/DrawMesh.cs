@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DrawMesh : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class DrawMesh : MonoBehaviour {
   private Vector3 lastMousePos;
 
   //adjustable variables
+  [SerializeField] private Slider slider;
   [SerializeField] private float lineThickness = 1f;
   [SerializeField] private float minDistance = 0.1f;
 
@@ -23,10 +25,16 @@ public class DrawMesh : MonoBehaviour {
   }
 
   private void Update() {
+    slider.value = lineThickness;
+    slider.onValueChanged.AddListener(UpdateFloatValue);
     if (gameManager.canDraw) MeshCreation(); //draw if we're allowed to
   }
 
-  private void MeshCreation() {
+  void UpdateFloatValue(float thicknessAmount) {
+    lineThickness = thicknessAmount;
+  }
+
+    private void MeshCreation() {
     if (Input.GetMouseButtonDown(0)) { //if mouse is pressed once
 
       mesh = new Mesh(); //initialize new mesh
